@@ -7,7 +7,10 @@ import {createFilmsListExtraTemplate} from './components/films-list-extra';
 import {createFilmCardTemplate} from './components/film-card.js';
 import {createShowMoreButtonTemplate} from './components/show-more-button.js';
 import {createPopupFilmDetailsTemplate} from './components/popup-film-details.js';
+import {generateFilmCard, generateFilmCards} from './mock/film-card.js';
 
+const FILM_CARD_COUNT = 12;
+const filmCards = generateFilmCards(FILM_CARD_COUNT);
 const headerSectionElement = document.querySelector(`.header`);
 const mainSectionElement = document.querySelector(`.main`);
 
@@ -33,17 +36,19 @@ const renderFilms = () => {
   render(filmsSection, createFilmsListTemplate(`All movies. Upcoming`), `beforeend`);
   const filmsListElement = filmsSection.querySelector(`.films-list`);
   const filmsListContainerElement = filmsListElement.querySelector(`.films-list > .films-list__container`);
-  renderRepeat(filmsListContainerElement, createFilmCardTemplate(), `beforeend`, 5);
+  //renderRepeat(filmsListContainerElement, createFilmCardTemplate(generateFilmCard()), `beforeend`, 5);
+  filmCards.slice(0, 5).forEach((filmCard) => render(filmsListContainerElement,
+    createFilmCardTemplate(filmCard), `beforeend`));
   render(filmsListElement, createShowMoreButtonTemplate(), `beforeend`);
   render(filmsSection, createFilmsListExtraTemplate(`Top rated`), `beforeend`);
   render(filmsSection, createFilmsListExtraTemplate(`Most commented`), `beforeend`);
 
   const filmsListContainerList = filmsSection.querySelectorAll(`.films-list--extra > .films-list__container`);
   [].map.call(filmsListContainerList, (item) => {
-    renderRepeat(item, createFilmCardTemplate(), `beforeend`, 2);
+    renderRepeat(item, createFilmCardTemplate(generateFilmCard()), `beforeend`, 2);
   });
 
-  render(mainSectionElement, createPopupFilmDetailsTemplate(), `beforeend`);
+  //render(mainSectionElement, createPopupFilmDetailsTemplate(), `beforeend`);
 };
 
 renderFilms();
