@@ -1,3 +1,4 @@
+import {generateRandomNumber} from '../utils.js';
 const FilmTitles = [`Бойцовский клуб`, `Начало`, `Бесстыжие`, `Славные парни`,
   `IT crowd`, `Остаться в живых`, `Назад в будущее`];
 
@@ -19,15 +20,11 @@ const Paragraph = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 const SentensesList = Paragraph.match(/.*./g);
 const FilmsGenres = [`Музыка`, `Трэш`, `Угар`, `Говно`];
 
-const generateRandomNumber = (min, max) => {
-  return min + Math.floor(Math.random() * max);
-};
-
-const generateDescription = (textList) => {
+const generateDescription = () => {
   let countSensense = generateRandomNumber(1, 3);
   let newDesctiption = ``;
   while (countSensense) {
-    newDesctiption += textList[generateRandomNumber(1, textList.length)];
+    newDesctiption += SentensesList[generateRandomNumber(1, SentensesList.length)];
     countSensense--;
   }
   return newDesctiption;
@@ -37,7 +34,7 @@ const generateFilmCard = () => {
   return {
     title: FilmTitles[generateRandomNumber(0, FilmTitles.length)],
     poster: Posters[generateRandomNumber(0, Posters.length)],
-    description: generateDescription(SentensesList),
+    description: generateDescription(),
     filmRate: (Math.random() * 10).toFixed(1),
     year: generateRandomNumber(1900, 2020),
     duration: generateRandomNumber(0, 4) + `h` + generateRandomNumber(0, 59) + `m`,
@@ -52,4 +49,4 @@ const generateFilmCards = (count) => {
     .map(generateFilmCard);
 };
 
-export {generateFilmCard, generateFilmCards};
+export {generateFilmCard, generateFilmCards, generateDescription};
