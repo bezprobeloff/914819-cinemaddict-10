@@ -1,6 +1,7 @@
 import {generateRandomNumber} from '../utils.js';
-const FilmTitles = [`Бойцовский клуб`, `Начало`, `Бесстыжие`, `Славные парни`,
-  `IT crowd`, `Остаться в живых`, `Назад в будущее`];
+
+const FilmTitles = [`Fight club`, `Inception`, `Shameless`, `Nice guy`,
+  `IT crowd`, `Lost`, `Back to the future`];
 
 const Posters = [`made-for-each-other.png`, `popeye-meets-sinbad.png`,
   `sagebrush-trail.jpg`, `santa-claus-conquers-the-martians.jpg`,
@@ -18,7 +19,24 @@ const Paragraph = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`;
 
 const SentensesList = Paragraph.match(/.*./g);
-const FilmsGenres = [`Музыка`, `Трэш`, `Угар`, `Говно`];
+
+const names = [`Anthony`, `Mann`, `Anne`, `Wigton`, `Heinz`, `Herald`, `Richard`, `Weil`,
+  `Erich`, `von Stroheim`, `Mary`, `Dan`, `Duryea`];
+
+const countries = [`USA`, `Russia`, `Mexico`];
+
+const FilmsGenres = [`Drama`, `Film-Noir`, `Mystery`];
+
+const generateName = () => {
+  return names[generateRandomNumber(0, names.length - 1)] + ` ` + names[generateRandomNumber(0, names.length - 1)];
+};
+
+const generateNameList = (count) => {
+  return new Array(count)
+    .fill(``)
+    .map(generateName)
+    .join(`, `);
+};
 
 const generateDescription = () => {
   let countSensense = generateRandomNumber(1, 3);
@@ -28,6 +46,10 @@ const generateDescription = () => {
     countSensense--;
   }
   return newDesctiption;
+};
+
+const getNewArrayGenres = () => {
+  return FilmsGenres.slice(0, generateRandomNumber(1, FilmsGenres.length));
 };
 
 const generateFilmCard = () => {
@@ -49,4 +71,24 @@ const generateFilmCards = (count) => {
     .map(generateFilmCard);
 };
 
-export {generateFilmCard, generateFilmCards, generateDescription};
+const filmDetails = () => {
+  return {
+    poster: Posters[generateRandomNumber(0, Posters.length)],
+    title: FilmTitles[generateRandomNumber(0, FilmTitles.length)],
+    originalTitle: FilmTitles[generateRandomNumber(0, FilmTitles.length)],
+    rate: (Math.random() * 10).toFixed(1),
+    director: generateName(names),
+    writers: generateNameList(3),
+    actors: generateNameList(5),
+    releaseDate: generateRandomNumber(1900, 2020),
+    duration: generateRandomNumber(0, 4) + `h` + generateRandomNumber(0, 59) + `m`,
+    country: countries[generateRandomNumber(0, countries.length)],
+    genres: getNewArrayGenres(),
+    description: generateDescription(),
+    age: generateRandomNumber(0, 18)
+  };
+};
+
+
+export {generateFilmCard, generateFilmCards, filmDetails};
+

@@ -1,8 +1,15 @@
-import {filmDetails} from '../mock/filmDetails.js';
+import {filmDetails} from '../mock/filmData.js';
 
+const {poster, title, originalTitle, rate, director, writers, actors, releaseDate,
+  duration, country, genres, description, age} = filmDetails();
+
+const createGenresTemplate = () => {
+  return genres.reduce((genresTemplate, current) => {
+    return (genresTemplate += `\n` + `<span class="film-details__genre">${current}</span>`);
+  }, ``);
+};
 export const createPopupFilmDetailsTemplate = () => {
-  const {poster, title, originalTitle, rate, director, writers, actors, releaseDate,
-    duration, country, genres, description, age} = filmDetails();
+
   return (`
     <section class="film-details">
       <form class="film-details__inner" action="" method="get">
@@ -56,10 +63,7 @@ export const createPopupFilmDetailsTemplate = () => {
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Genres</td>
-                  <td class="film-details__cell">
-                    <span class="film-details__genre">${genres}</span>
-                    <span class="film-details__genre">Film-Noir</span>
-                    <span class="film-details__genre">Mystery</span></td>
+                  <td class="film-details__cell">${createGenresTemplate()}</td>
                 </tr>
               </table>
 
