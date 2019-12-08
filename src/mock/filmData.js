@@ -20,15 +20,15 @@ const Paragraph = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 const SentensesList = Paragraph.match(/.*./g);
 
-const names = [`Anthony`, `Mann`, `Anne`, `Wigton`, `Heinz`, `Herald`, `Richard`, `Weil`,
+const Names = [`Anthony`, `Mann`, `Anne`, `Wigton`, `Heinz`, `Herald`, `Richard`, `Weil`,
   `Erich`, `von Stroheim`, `Mary`, `Dan`, `Duryea`];
 
-const countries = [`USA`, `Russia`, `Mexico`];
+const Countries = [`USA`, `Russia`, `Mexico`];
 
 const FilmsGenres = [`Drama`, `Film-Noir`, `Mystery`];
 
 const generateName = () => {
-  return names[generateRandomNumber(0, names.length - 1)] + ` ` + names[generateRandomNumber(0, names.length - 1)];
+  return Names[generateRandomNumber(0, Names.length - 1)] + ` ` + Names[generateRandomNumber(0, Names.length - 1)];
 };
 
 const generateNameList = (count) => {
@@ -77,12 +77,12 @@ const filmDetails = () => {
     title: FilmTitles[generateRandomNumber(0, FilmTitles.length)],
     originalTitle: FilmTitles[generateRandomNumber(0, FilmTitles.length)],
     rate: (Math.random() * 10).toFixed(1),
-    director: generateName(names),
+    director: generateName(Names),
     writers: generateNameList(3),
     actors: generateNameList(5),
     releaseDate: generateRandomNumber(1900, 2020),
     duration: generateRandomNumber(0, 4) + `h` + generateRandomNumber(0, 59) + `m`,
-    country: countries[generateRandomNumber(0, countries.length)],
+    country: Countries[generateRandomNumber(0, Countries.length)],
     genres: getNewArrayGenres(),
     description: generateDescription(),
     age: generateRandomNumber(0, 18)

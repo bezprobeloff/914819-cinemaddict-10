@@ -1,5 +1,5 @@
 import {generateRandomNumber} from '../utils.js';
-const countfilm = generateRandomNumber(0, 30);
+const countFilm = generateRandomNumber(0, 30);
 
 const getProfileRate = (count) => {
   if (count > 0 && count <= 10) {
@@ -14,7 +14,7 @@ const getProfileRate = (count) => {
 export const createProfileTemplate = () => {
   return (`
     <section class="header__profile profile">
-      <p class="profile__rating">${getProfileRate(countfilm)}</p>
+      <p class="profile__rating">${getProfileRate(countFilm)}</p>
       <img class="profile__avatar" src="images/bitmap@2x.png" alt="Avatar" width="35" height="35">
     </section>
   `);
