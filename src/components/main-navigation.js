@@ -1,6 +1,8 @@
 import {getStatMenu} from '../mock/menu.js';
+import {createElement} from '../utils.js';
+
 const {watchList, history, favorites} = getStatMenu();
-export const createMainNavigationTemplate = () => {
+const createMainNavigationTemplate = () => {
   return (`
     <nav class="main-navigation">
       <a href="#all" class="main-navigation__item main-navigation__item--active">All movies</a>
@@ -11,3 +13,25 @@ export const createMainNavigationTemplate = () => {
     </nav>
   `);
 };
+
+export default class MainNavigation {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createMainNavigationTemplate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
