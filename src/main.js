@@ -7,7 +7,7 @@ import FilmsListComponent from './components/films-list.js';
 import FilmsListExtraComponent from './components/films-list-extra';
 import FilmCardComponent from './components/film-card.js';
 import ShowMoreButtonComponent from './components/show-more-button.js';
-import PopupFilmDetails from './components/popup-film-details.js';
+import PopupFilmDetailsComponent from './components/popup-film-details.js';
 import {generateFilmCards} from './mock/filmData.js';
 
 const filmCards = generateFilmCards(FILM_CARD_COUNT);
@@ -28,8 +28,8 @@ const renderFilms = () => {
   const filmsListElement = filmsSection.querySelector(`.films-list`);
   const filmsListContainerElement = filmsListElement.querySelector(`.films-list > .films-list__container`);
 
-  render(filmsListElement, new ShowMoreButtonComponent().getElement(), RenderPosition.BEFOREEND);
-  const filmsShowMoreButton = filmsSection.querySelector(`.films-list__show-more`);
+  const showMoreButtonComponent = new ShowMoreButtonComponent();
+  render(filmsListElement, showMoreButtonComponent.getElement(), RenderPosition.BEFOREEND);
   render(filmsSection, new FilmsListExtraComponent(`Top rated`).getElement(), RenderPosition.BEFOREEND);
   render(filmsSection, new FilmsListExtraComponent(`Most commented`).getElement(), RenderPosition.BEFOREEND);
 
@@ -41,18 +41,17 @@ const renderFilms = () => {
       render(filmsListContainerElement, new FilmCardComponent(filmCard).getElement(), RenderPosition.BEFOREEND));
 
     if (showingFilmsCard >= filmCards.length) {
-      filmsShowMoreButton.remove();
+      showMoreButtonComponent.getElement().remove();
+      showMoreButtonComponent.removeElement();
     }
   };
 
-  filmsShowMoreButton.addEventListener(`click`, showMoreCards);
+  showMoreButtonComponent.getElement().addEventListener(`click`, showMoreCards);
 
   const footerStats = document.querySelector(`.footer__statistics > p`);
   footerStats.textContent = `${filmCards.length} movies inside`;
 
-  /*
-  render(mainSectionElement, new PopupFilmDetailsComponent(), RenderPosition.BEFOREEND);
-  */
+  render(mainSectionElement, new PopupFilmDetailsComponent().getElement(), RenderPosition.BEFOREEND);
 };
 
 renderFilms();
