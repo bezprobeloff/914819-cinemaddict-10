@@ -1,12 +1,4 @@
-import FilmCardComponent from '../components/film-card.js';
-import {generateFilmCards} from '../mock/filmData.js';
-import {createElement, FILM_CARD_COUNT, SHOW_FILM_CARDS_ON_START} from '../utils.js';
-
-const filmCards = generateFilmCards(FILM_CARD_COUNT);
-const filmsCardsOnStart = filmCards.slice(0, SHOW_FILM_CARDS_ON_START).
-  map((card) => {
-    return new FilmCardComponent(card).getElement();
-  });
+import {createElement} from '../utils.js';
 
 const createFilmsListTemplate = (title) => {
   return (`
@@ -30,9 +22,6 @@ export default class FilmsList {
   getElement() {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
-      for (const filmCard of filmsCardsOnStart) {
-        this._element.querySelector(`.films-list__container`).append(filmCard);
-      }
     }
 
     return this._element;
