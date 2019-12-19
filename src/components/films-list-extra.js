@@ -23,17 +23,6 @@ export default class FilmsListExtra {
   getElement() {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
-      /*
-      if ((getListCardsTopRated().length !== 0) && this._title === `Top rated`) {
-        for (const filmCardExtra of getListCardsTopRated()) {
-          this._element.querySelector(`.films-list__container`).append(filmCardExtra);
-        }
-      } else if ((getListCardsMostCommented().length !== 0) && this._title === `Most commented`) {
-        for (const filmCardExtra of getListCardsMostCommented()) {
-          this._element.querySelector(`.films-list__container`).append(filmCardExtra);
-        }
-      }
-      */
     }
 
     return this._element;
