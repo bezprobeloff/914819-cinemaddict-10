@@ -1,21 +1,20 @@
 import {createElement} from '../utils.js';
 
-const createFilmsListTemplate = () => {
+const createFilmsListNullTemplate = () => {
   return (`
     <section class="films-list">
-      <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2>
-      <div class="films-list__container"></div>
+      <h2 class="films-list__title">There are no movies in our database</h2>
     </section>
   `);
 };
 
-export default class FilmsList {
+export default class FilmsListNull {
   constructor() {
     this._element = null;
   }
 
   getTemplate() {
-    return createFilmsListTemplate();
+    return createFilmsListNullTemplate();
   }
 
   getElement() {
