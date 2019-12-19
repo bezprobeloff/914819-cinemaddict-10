@@ -1,4 +1,4 @@
-import {generateRandomNumber} from '../utils.js';
+import {generateRandomNumber, createElement} from '../utils.js';
 const countFilm = generateRandomNumber(0, 30);
 
 const getProfileRate = (count) => {
@@ -11,7 +11,8 @@ const getProfileRate = (count) => {
   }
   return ``;
 };
-export const createProfileTemplate = () => {
+
+const createProfileTemplate = () => {
   return (`
     <section class="header__profile profile">
       <p class="profile__rating">${getProfileRate(countFilm)}</p>
@@ -19,3 +20,25 @@ export const createProfileTemplate = () => {
     </section>
   `);
 };
+
+export default class Profile {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createProfileTemplate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

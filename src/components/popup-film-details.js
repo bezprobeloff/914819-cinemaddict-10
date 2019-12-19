@@ -1,4 +1,5 @@
 import {filmDetails} from '../mock/filmData.js';
+import {createElement} from '../utils.js';
 
 const {poster, title, originalTitle, rate, director, writers, actors, releaseDate,
   duration, country, genres, description, age} = filmDetails();
@@ -8,7 +9,7 @@ const createGenresTemplate = () => {
     return (genresTemplate += `\n` + `<span class="film-details__genre">${current}</span>`);
   }, ``);
 };
-export const createPopupFilmDetailsTemplate = () => {
+const createPopupFilmDetailsTemplate = () => {
 
   return (`
     <section class="film-details">
@@ -138,3 +139,25 @@ export const createPopupFilmDetailsTemplate = () => {
     </section>
   `);
 };
+
+export default class PopupFilmCard {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createPopupFilmDetailsTemplate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
