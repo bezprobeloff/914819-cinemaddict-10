@@ -1,4 +1,4 @@
-import {generateRandomNumber} from '../utils.js';
+import {generateRandomNumber} from '../utils/common.js';
 import AbstractComponent from './abstract-component.js';
 const countFilm = generateRandomNumber(0, 30);
 

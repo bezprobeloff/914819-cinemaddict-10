@@ -2,10 +2,6 @@ const FILM_CARD_COUNT = 22;
 const SHOW_FILM_CARDS_ON_START = 5;
 const SHOW_FILM_CARDS_BY_BUTTON = 5;
 
-const generateRandomNumber = (min, max) => {
-  return min + Math.floor(Math.random() * max);
-};
-
 const RenderPosition = {
   AFTERBEGIN: `afterbegin`,
   BEFOREEND: `beforeend`
@@ -54,7 +50,6 @@ const getListCardsMostCommented = (cards) => {
 
 
 export {
-  generateRandomNumber,
   RenderPosition,
   createElement,
   render,

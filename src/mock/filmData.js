@@ -1,4 +1,4 @@
-import {generateRandomNumber} from '../utils.js';
+import {generateRandomNumber} from '../utils/common.js';
 
 const FilmTitles = [`Fight club`, `Inception`, `Shameless`, `Nice guy`,
   `IT crowd`, `Lost`, `Back to the future`];

@@ -1,4 +1,4 @@
-import {getListCardsTopRated, getListCardsMostCommented, RenderPosition, render, FILM_CARD_COUNT, SHOW_FILM_CARDS_ON_START, SHOW_FILM_CARDS_BY_BUTTON} from './utils.js';
+import {getListCardsTopRated, getListCardsMostCommented, RenderPosition, render, FILM_CARD_COUNT, SHOW_FILM_CARDS_ON_START, SHOW_FILM_CARDS_BY_BUTTON} from './utils/render.js';
 import ProfileComponent from './components/profile.js';
 import MainNavigationComponent from './components/main-navigation.js';
 import SortFilmsComponent from './components/sort-films.js';
