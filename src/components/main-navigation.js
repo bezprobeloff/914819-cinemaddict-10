@@ -1,5 +1,5 @@
 import {getStatMenu} from '../mock/menu.js';
-import {createElement} from '../utils.js';
+import AbstractComponent from './abstract-component.js';
 
 const {watchList, history, favorites} = getStatMenu();
 const createMainNavigationTemplate = () => {
@@ -14,24 +14,9 @@ const createMainNavigationTemplate = () => {
   `);
 };
 
-export default class MainNavigation {
-  constructor() {
-    this._element = null;
-  }
+export default class MainNavigation extends AbstractComponent {
 
   getTemplate() {
     return createMainNavigationTemplate();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
