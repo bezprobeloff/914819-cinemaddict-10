@@ -8,7 +8,7 @@ const createFilmsListNullTemplate = () => {
   `);
 };
 
-export default class FilmsListNull {
+export default class FilmsListEmpty {
   constructor() {
     this._element = null;
   }
