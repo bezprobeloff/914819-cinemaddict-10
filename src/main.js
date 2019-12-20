@@ -15,9 +15,9 @@ const filmCards = generateFilmCards(FILM_CARD_COUNT);
 const headerSectionElement = document.querySelector(`.header`);
 const mainSectionElement = document.querySelector(`.main`);
 const renderCard = (card, container) => {
-  const filmCardComponent = new FilmCardComponent(card).getElement();
+  const filmCardComponent = new FilmCardComponent(card);
   const popupFilmDetailsComponent = new PopupFilmDetailsComponent();
-  render(container, filmCardComponent, RenderPosition.BEFOREEND);
+  render(container, filmCardComponent.getElement(), RenderPosition.BEFOREEND);
   const onEscKeyDown = (evt) => {
     const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
 
@@ -32,6 +32,7 @@ const renderCard = (card, container) => {
     popupFilmDetailsComponent.removeElement();
   };
 
+  filmCardComponent.openPopupClickHandler() => {}
   filmCardComponent.querySelector(`.film-card__poster`).addEventListener(`click`, () => {
     render(mainSectionElement, popupFilmDetailsComponent.getElement(), RenderPosition.BEFOREEND);
     popupFilmDetailsComponent.getElement().querySelector(`.film-details__close-btn`)

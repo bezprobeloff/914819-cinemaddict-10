@@ -11,4 +11,8 @@ export default class Profile extends AbstractComponent {
   getTemplate() {
     return createShowMoreButtonTemplate();
   }
+
+  setClickHandler(handler) {
+    this.getElement().addEventListener(`click`, handler);
+  }
 }
