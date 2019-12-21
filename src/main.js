@@ -32,8 +32,7 @@ const renderCard = (card, container) => {
     popupFilmDetailsComponent.removeElement();
   };
 
-  filmCardComponent.openPopupClickHandler() => {}
-  filmCardComponent.querySelector(`.film-card__poster`).addEventListener(`click`, () => {
+  filmCardComponent.openPopupClickHandler(() => {
     render(mainSectionElement, popupFilmDetailsComponent.getElement(), RenderPosition.BEFOREEND);
     popupFilmDetailsComponent.getElement().querySelector(`.film-details__close-btn`)
       .addEventListener(`click`, removePopupFilmDetails);
@@ -85,7 +84,7 @@ const renderFilms = () => {
       }
     };
 
-    showMoreButtonComponent.getElement().addEventListener(`click`, showMoreCards);
+    showMoreButtonComponent.setClickHandler(showMoreCards);
   } else {
     render(filmsSection, new FilmsListNullComponent().getElement(), RenderPosition.BEFOREEND);
   }
