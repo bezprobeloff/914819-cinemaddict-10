@@ -2,10 +2,6 @@ const FILM_CARD_COUNT = 22;
 const SHOW_FILM_CARDS_ON_START = 5;
 const SHOW_FILM_CARDS_BY_BUTTON = 5;
 
-const generateRandomNumber = (min, max) => {
-  return min + Math.floor(Math.random() * max);
-};
-
 const RenderPosition = {
   AFTERBEGIN: `afterbegin`,
   BEFOREEND: `beforeend`
@@ -21,10 +17,10 @@ const createElement = (template) => {
 const render = (container, element, place) => {
   switch (place) {
     case RenderPosition.AFTERBEGIN:
-      container.prepend(element);
+      container.prepend(element.getElement());
       break;
     case RenderPosition.BEFOREEND:
-      container.append(element);
+      container.append(element.getElement());
       break;
   }
 };
@@ -52,9 +48,7 @@ const getListCardsMostCommented = (cards) => {
   return filmCardsListExtra;
 };
 
-
 export {
-  generateRandomNumber,
   RenderPosition,
   createElement,
   render,
