@@ -1,7 +1,7 @@
-import {getListCardsTopRated, getListCardsMostCommented, RenderPosition, render, SHOW_FILM_CARDS_ON_START, SHOW_FILM_CARDS_BY_BUTTON} from '../utils/render.js';
+import {getListCardsTopRated, getListCardsMostCommented, RenderPosition, render, remove, SHOW_FILM_CARDS_ON_START, SHOW_FILM_CARDS_BY_BUTTON} from '../utils/render.js';
 import FilmCardComponent from '../components/film-card.js';
 import PopupFilmDetailsComponent from '../components/popup-film-details.js';
-import SortFilmsComponent from '../components/sort-films.js';
+import SortFilmsComponent, {SortType} from '../components/sort-films.js';
 import FilmsSectionComponent from '../components/films-section.js';
 import FilmsListComponent from '../components/films-list.js';
 import FilmsListEmptyComponent from '../components/films-list-empty.js';
@@ -35,6 +35,12 @@ const renderCard = (card, container, containerForPopup) => {
   });
 };
 
+const renderCards = (container, containerForPopup, cards) => {
+  cards.forEach((card) => {
+    renderCard(card, container, containerForPopup);
+  });
+};
+
 export default class PageController {
   constructor(container) {
     this._container = container;
@@ -52,6 +58,25 @@ export default class PageController {
     const container = this._container;
     const filmsSection = this._filmsSectionComponent.getElement();
     let showingFilmsCard = SHOW_FILM_CARDS_ON_START;
+
+    const renderShowMoreButton = () => {
+      if (showingFilmsCard >= filmCards.length) {
+        return;
+      }
+
+      render(container, this._showMoreButtonComponent, RenderPosition.BEFOREEND);
+
+      this._showMoreButtonComponent.setClickHandler(() => {
+        const prevTasksCount = showingFilmsCard;
+        showingFilmsCard = showingFilmsCard + SHOW_FILM_CARDS_BY_BUTTON;
+
+        renderCards(container, filmCards.slice(prevTasksCount, showingFilmsCard));
+
+        if (showingFilmsCard >= filmCards.length) {
+          remove(this._showMoreButtonComponent);
+        }
+      });
+    };
 
     render(container, this._sortFilmsComponent, RenderPosition.BEFOREEND);
     render(container, this._filmsSectionComponent, RenderPosition.BEFOREEND);

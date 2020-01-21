@@ -25,6 +25,11 @@ const render = (container, element, place) => {
   }
 };
 
+export const remove = (component) => {
+  component.getElement().remove();
+  component.removeElement();
+};
+
 const getListCardsTopRated = (cards) => {
   let filmCardsListExtra = [];
   if (cards.length !== 0) {
@@ -52,6 +57,7 @@ export {
   RenderPosition,
   createElement,
   render,
+  remove,
   getListCardsTopRated,
   getListCardsMostCommented,
   FILM_CARD_COUNT,
